@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demand Forecasting Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-left: 5px solid #28a745;
+            text-align: center;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Forecasting Model Inference</h2>
+        <form action="/predict" method="post">
+
+            <div class="form-group">
+                <label for="product_id">Product ID:</label>
+                <input type="number" name="product_id" required placeholder="e.g., 101">
+            </div>
+
+            <div class="form-group">
+                <label for="store_id">Store ID:</label>
+                <input type="number" name="store_id" required placeholder="e.g., 5">
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" step="0.01" name="price" required placeholder="e.g., 45.50">
+            </div>
+
+            <div class="form-group">
+                <label for="sales_quantity">Sales Quantity:</label>
+                <input type="number" step="0.01" name="sales_quantity" required placeholder="e.g., 150">
+            </div>
+
+            <div class="form-group">
+                <label for="promotions">Promotions:</label>
+                <select name="promotions">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="seasonality">Seasonality Factors:</label>
+                <select name="seasonality">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="external_factors">External Factors:</label>
+                <select name="external_factors">
+                    <option value="Economic">Economic</option>
+                    <option value="Weather">Weather</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+
+            <button type="submit">Predict Segment</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
